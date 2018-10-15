@@ -32,12 +32,6 @@ abstract class BaseMvpTitleListActivity<P : ITopPresenter> : BaseMvpTitleActivit
         setEnableLoadMore(false)
     }
 
-
-    /**
-     * 重试
-     */
-    abstract fun onRetry()
-
     open val setRecyclerViewBgColor = R.color.white
 
     fun RecyclerView.vertical() {

@@ -144,7 +144,7 @@ abstract class BaseActivity : AppCompatActivity() {
     /**
      * 网络访问错误提醒
      */
-    fun showNetErrorTip() {
+    open fun showNetErrorTip() {
         ToastUitl.showToastWithImg(getText(R.string.net_error).toString(), R.drawable.ic_wifi_off)
     }
 

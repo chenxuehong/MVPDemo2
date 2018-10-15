@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.layout_list.*
  */
 
 abstract class BaseMvpListActivity<P : ITopPresenter> : BaseMvpActivity<P>(), IListView<P> {
-    override fun getContentView(): Int = R.layout.layout_list
+    override fun getChildView(): Int = R.layout.layout_list
     override val mRecyclerView: RecyclerView by lazy { list_rv }
     override val mRefreshLayout: SmartRefreshLayout by lazy { refreshLayout }
 

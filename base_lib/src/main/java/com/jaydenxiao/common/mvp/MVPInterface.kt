@@ -24,13 +24,16 @@ import java.lang.ref.WeakReference
 interface ITopView : LifecycleOwner {
     fun getCtx(): Context?
     fun inited()
+
     fun finish(resultCode: Int = Activity.RESULT_CANCELED)
     fun showLoading(@NotNull msg: String)
     fun showLoading(@StringRes srtResId: Int)
+    fun showNetErrorTip()
+    fun showServerErrorTip()
+    fun showEmpty()
     fun dismissLoading()
     fun showToast(@StringRes srtResId: Int)
     fun showToast(@NotNull message: String)
-    fun showNetErrorTip(@NotNull error: String)
 }
 
 interface ITopPresenter : LifecycleObserver {

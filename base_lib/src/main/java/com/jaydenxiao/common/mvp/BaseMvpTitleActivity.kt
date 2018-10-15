@@ -27,7 +27,7 @@ abstract class BaseMvpTitleActivity<P : ITopPresenter> : BaseMvpActivity<P>() {
     @LayoutRes
     protected abstract fun childView(): Int
 
-    override fun getContentView(): Int = R.layout.activtiy_base_title
+    override fun getChildView(): Int = R.layout.activtiy_base_title
 
     override fun initView() {
         val container = this.findViewById<FrameLayout>(R.id.base_container)

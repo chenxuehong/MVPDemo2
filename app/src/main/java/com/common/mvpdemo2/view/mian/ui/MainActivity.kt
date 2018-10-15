@@ -12,6 +12,10 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshListener
 
 class MainActivity : BaseMvpListActivity<MainPresenter>(), MainActivityIml {
 
+    override fun onRetry() {
+        initData()
+    }
+
     override fun loadMoreFail(isRefresh: Boolean) {
 
     }
@@ -39,6 +43,7 @@ class MainActivity : BaseMvpListActivity<MainPresenter>(), MainActivityIml {
             currentPage = 0
             mPresenter?.loadJokeModelData(currentPage, 8)
         })
+
     }
 
     override fun afterLoadJokeModelData(it: JokeModel) {

@@ -2,9 +2,13 @@ package com.jaydenxiao.common.mvp
 
 import android.content.Context
 import android.os.Bundle
-import com.jaydenxiao.common.*
+import android.widget.FrameLayout
+import com.jaydenxiao.common.ITopPresenter
+import com.jaydenxiao.common.IView
+import com.jaydenxiao.common.R
 import com.jaydenxiao.common.base.BaseActivity
-import com.jaydenxiao.common.commonutils.LoadingDialog
+import com.jaydenxiao.common.showToastBottom
+import com.jaydenxiao.common.widget.linearlayout.LoadingPager
 
 /**
  * Created by 13198 on 2018/9/19.
@@ -13,6 +17,8 @@ import com.jaydenxiao.common.commonutils.LoadingDialog
 
 abstract class BaseMvpActivity<P : ITopPresenter> : BaseActivity(), IView<P> {
 
+    var mLoadingPager: LoadingPager? = null
+    override fun getContentView(): Int = R.layout.activtiy_base
     override fun onCreate(savedInstanceState: Bundle?) {
         inited()
         super.onCreate(savedInstanceState)
@@ -22,9 +28,31 @@ abstract class BaseMvpActivity<P : ITopPresenter> : BaseActivity(), IView<P> {
         return this
     }
 
+    override fun initView() {
+        val container = this.findViewById<FrameLayout>(R.id.activity_base_fl_container)
+        container.removeAllViews()
+        container.addView(layoutInflater.inflate(getChildView(), null))
+        mLoadingPager = this.findViewById<LoadingPager>(R.id.activity_base_loadingPager)
+        mLoadingPager?.setOnReloadListener {
+            onRetry()
+        }
+    }
+
+    abstract fun getChildView(): Int
+
+    /**
+     * 重试
+     */
+    abstract fun onRetry()
+
+    private fun setLoadingState(loadStatus: LoadingPager.LoadStatus) {
+        mLoadingPager?.setLoadingTip(loadStatus)
+    }
+
     override fun showLoading(msg: String) {
 
-        LoadingDialog.showDialogForLoading(this, msg, true)
+        setLoadingState(LoadingPager.LoadStatus.loading)
+        mLoadingPager?.setTips(msg)
     }
 
     override fun finish(resultCode: Int) {
@@ -32,18 +60,33 @@ abstract class BaseMvpActivity<P : ITopPresenter> : BaseActivity(), IView<P> {
     }
 
     override fun showLoading(srtResId: Int) {
-        LoadingDialog.showDialogForLoading(this, resources.getString(srtResId), true)
+        showLoading(resources.getString(srtResId))
     }
 
     override fun dismissLoading() {
-        LoadingDialog.cancelDialogForLoading()
+
+        setLoadingState(LoadingPager.LoadStatus.finish)
     }
 
     /**
      * 网络访问错误提醒
      */
-    override fun showNetErrorTip(error: String) {
-        showToastWithImg(error, R.drawable.ic_wifi_off)
+    override fun showNetErrorTip() {
+        setLoadingState(LoadingPager.LoadStatus.error)
+    }
+
+    /**
+     * 网络访问错误提醒
+     */
+    override fun showEmpty() {
+        setLoadingState(LoadingPager.LoadStatus.empty)
+    }
+
+    /**
+     * 网络访问错误提醒
+     */
+    override fun showServerErrorTip() {
+        setLoadingState(LoadingPager.LoadStatus.sereverError)
     }
 
     override fun showToast(message: String) {

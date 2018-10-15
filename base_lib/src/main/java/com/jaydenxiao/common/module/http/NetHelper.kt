@@ -41,7 +41,7 @@ fun <T> Observable<BaseModle<T>>.mSubscribe(
                     iModel?.addDisposable(d)
                     iBaseView?.showLoading("正在加载中...")
                     if (!NetWorkUtils.isNetConnected(LibApplication.appContext)) {
-                        iBaseView?.showNetErrorTip("连接失败,请检查网络状况!")
+                        iBaseView?.showNetErrorTip()
                         onComplete()
                     }
                 }
@@ -55,7 +55,7 @@ fun <T> Observable<BaseModle<T>>.mSubscribe(
                         if (!value.reason.isNullOrEmpty()) {
                             value.reason?.let { showToastBottom(it) }
                         } else {
-                            showToastBottom("请求失败")
+                            iBaseView?.showServerErrorTip()
                         }
                     }
                 }
@@ -70,8 +70,8 @@ fun <T> Observable<BaseModle<T>>.mSubscribe(
                     } else {
                         errorInfo = "请求失败"
                     }
+                    iBaseView?.showServerErrorTip()
                     showToastBottom(errorInfo)
-
                 }
 
             })
@@ -95,7 +95,7 @@ fun <T> Observable<BaseModle<T>>.mSubscribe2(
                     iModel?.addDisposable(d)
                     iBaseView?.showLoading("正在加载中...")
                     if (!NetWorkUtils.isNetConnected(LibApplication.appContext)) {
-                        iBaseView?.showNetErrorTip("连接失败,请检查网络状况!")
+                        iBaseView?.showNetErrorTip()
                         onComplete()
                     }
                 }
@@ -120,6 +120,7 @@ fun <T> Observable<BaseModle<T>>.mSubscribe2(
                     } else {
                         errorInfo = "请求失败"
                     }
+                    iBaseView?.showServerErrorTip()
                     showToastBottom(errorInfo)
                 }
 
@@ -145,7 +146,7 @@ fun <T,P : ITopPresenter> Observable<BaseModle<T>>.mSubscribeList(
                     iModel?.addDisposable(d)
                     iBaseView?.showLoading("正在加载中...")
                     if (!NetWorkUtils.isNetConnected(LibApplication.appContext)) {
-                        iBaseView?.showNetErrorTip("连接失败,请检查网络状况!")
+                        iBaseView?.showNetErrorTip()
                         onComplete()
                         if (!isRefresh) {
                             iBaseView?.loadMoreFail(isRefresh)
@@ -173,7 +174,7 @@ fun <T,P : ITopPresenter> Observable<BaseModle<T>>.mSubscribeList(
                     } else {
                         errorInfo = "请求失败"
                     }
-                    iBaseView?.showNetErrorTip(errorInfo)
+                    iBaseView?.showServerErrorTip()
                     if (!isRefresh) {
                         iBaseView?.loadMoreFail(isRefresh)
                     }
