@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/dp_20"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/item_main1_tv_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="content1" />
+
+    <TextView
+        android:id="@+id/item_main1_tv_updateTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2018/10/10 10:10:09" />
+</LinearLayout>
