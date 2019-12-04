@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <FrameLayout
-        android:id="@+id/activity_base_fl_container"
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#ffffff"></FrameLayout>
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-    <com.jaydenxiao.common.widget.linearlayout.LoadingPager
-        android:id="@+id/activity_base_loadingPager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"></com.jaydenxiao.common.widget.linearlayout.LoadingPager>
-</FrameLayout>
+        <FrameLayout
+            android:id="@+id/activity_base_fl_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#ffffff"></FrameLayout>
+
+        <com.jaydenxiao.common.ui.view.linearlayout.LoadingPager
+            android:id="@+id/activity_base_loadingPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></com.jaydenxiao.common.ui.view.linearlayout.LoadingPager>
+    </FrameLayout>
+</LinearLayout>

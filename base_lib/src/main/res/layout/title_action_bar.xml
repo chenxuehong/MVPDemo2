@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="49dp"
+    android:background="@color/main_color"
+    android:id="@+id/title_bar_fl_bg"
+    android:fitsSystemWindows="true"
+    android:minHeight="49dp">
+
+    <LinearLayout
+        android:id="@+id/title_back"
+        android:layout_width="wrap_content"
+        android:layout_height="49dp"
+        android:paddingLeft="10dp"
+        android:visibility="invisible"
+        android:orientation="horizontal">
+
+        <com.jaydenxiao.common.ui.view.AutoFitview.AutoHeightImageView
+            android:id="@+id/tv_title_back"
+            android:layout_width="wrap_content"
+            android:layout_height="49dp"
+            android:layout_gravity="center_vertical"
+            android:src="@mipmap/left_arrow" />
+
+        <TextView
+            android:id="@+id/title_left"
+            android:layout_width="wrap_content"
+            android:layout_height="49dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="5dp"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="返回"
+            android:textColor="@color/black"
+            android:textSize="34dp"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:layout_width="500dp"
+        android:gravity="center_horizontal"
+        android:layout_height="49dp">
+        <TextView
+            android:id="@+id/title_name"
+            android:layout_width="wrap_content"
+            android:layout_height="49dp"
+            android:gravity="center"
+            android:text=""
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textSize="22sp" />
+        <com.jaydenxiao.common.ui.view.AutoFitview.AutoHeightImageView
+            android:layout_marginLeft="@dimen/text_size_10"
+            android:id="@+id/titlebar_iv_icon"
+            android:src="@mipmap/dsanjiao"
+            android:visibility="gone"
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="49dp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/title_share"
+        android:layout_width="wrap_content"
+        android:layout_height="49dp"
+        android:layout_gravity="right"
+        android:layout_marginRight="30dp"
+        android:gravity="center"
+        android:singleLine="true"
+        android:textColor="@color/black"
+        android:textSize="22sp"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/check_img"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        android:layout_gravity="right|center_vertical"
+        android:layout_marginRight="30dp"
+        android:gravity="center"
+        android:singleLine="true"
+        android:visibility="visible" />
+
+    <View
+        android:id="@+id/title_bar_view_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="48dp"
+        android:background="@color/line" />
+</FrameLayout>

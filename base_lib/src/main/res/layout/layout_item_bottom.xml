@@ -22,7 +22,7 @@
         android:layout_above="@id/item_bottom_tv_title"
         android:layout_centerHorizontal="true" />
 
-    <com.common.viewlib.view.CommonRoundOvalView
+    <com.jaydenxiao.common.ui.view.CommonRoundOvalView
         android:id="@+id/item_bottom_cycle_point"
         android:layout_width="15dp"
         android:layout_height="15dp"

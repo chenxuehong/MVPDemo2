@@ -15,4 +15,16 @@
     <attr name="dayNightBackgroundDrawableAttr" format="string|reference"/><!--切换背景图片属性-->
 </declare-styleable>
 
+    <declare-styleable name="NumberPicker">
+        <attr name="picker_normalTextColor" format="color" />
+        <attr name="picker_normalTextSize" format="dimension" />
+        <attr name="picker_selecredTextColor" format="color" />
+        <attr name="picker_selecredTextSize" format="dimension" />
+        <attr name="picker_unitHight" format="dimension" />
+        <attr name="picker_itemNumber" format="integer" />
+        <attr name="picker_lineColor" format="color" />
+        <attr name="picker_maskHight" format="dimension" />
+        <attr name="picker_noEmpty" format="boolean" />
+        <attr name="picker_isEnable" format="boolean" />
+    </declare-styleable>
 </resources>

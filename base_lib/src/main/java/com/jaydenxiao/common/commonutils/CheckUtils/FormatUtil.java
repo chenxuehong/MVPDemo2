@@ -6,7 +6,7 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.text.TextUtils;
 
-import com.jaydenxiao.common.base.AppConfig;
+import com.jaydenxiao.common.BuildConfig;
 import com.jaydenxiao.common.commonutils.MyLogger;
 
 import java.text.ParseException;
@@ -193,7 +193,7 @@ public class FormatUtil {
         // ================ 号码的长度 15位或18位 ================
         if (IDStr.length() != 15 && IDStr.length() != 18) {
             errorInfo = "身份证号码长度应该为15位或18位。";
-            MyLogger.e(AppConfig.DEBUG_TAG,"ID:"+"errorInfo="+errorInfo);
+            MyLogger.e(BuildConfig.DEBUG_TAG,"ID:"+"errorInfo="+errorInfo);
             return false;
         }
         // =======================(end)========================
@@ -206,7 +206,7 @@ public class FormatUtil {
         }
         if (isNumeric(Ai) == false) {
             errorInfo = "身份证15位号码都应为数字 ; 18位号码除最后一位外，都应为数字。";
-            MyLogger.e(AppConfig.DEBUG_TAG,"ID:"+"errorInfo="+errorInfo);
+            MyLogger.e(BuildConfig.DEBUG_TAG,"ID:"+"errorInfo="+errorInfo);
             return false;
         }
         // =======================(end)========================
@@ -217,7 +217,7 @@ public class FormatUtil {
         String strDay = Ai.substring(12, 14);// 月份
         if (isDataFormat(strYear + "-" + strMonth + "-" + strDay) == false) {
             errorInfo = "身份证生日无效。";
-            MyLogger.e(AppConfig.DEBUG_TAG,"ID:"+"errorInfo="+errorInfo);
+            MyLogger.e(BuildConfig.DEBUG_TAG,"ID:"+"errorInfo="+errorInfo);
             return false;
         }
         GregorianCalendar gc = new GregorianCalendar();
@@ -227,7 +227,7 @@ public class FormatUtil {
                     || (gc.getTime().getTime() - s.parse(
                     strYear + "-" + strMonth + "-" + strDay).getTime()) < 0) {
                 errorInfo = "身份证生日不在有效范围。";
-                MyLogger.e(AppConfig.DEBUG_TAG,"ID:"+"errorInfo="+errorInfo);
+                MyLogger.e(BuildConfig.DEBUG_TAG,"ID:"+"errorInfo="+errorInfo);
                 return false;
             }
         } catch (NumberFormatException e) {
@@ -239,12 +239,12 @@ public class FormatUtil {
         }
         if (Integer.parseInt(strMonth) > 12 || Integer.parseInt(strMonth) == 0) {
             errorInfo = "身份证月份无效";
-            MyLogger.e(AppConfig.DEBUG_TAG,"ID:"+"errorInfo="+errorInfo);
+            MyLogger.e(BuildConfig.DEBUG_TAG,"ID:"+"errorInfo="+errorInfo);
             return false;
         }
         if (Integer.parseInt(strDay) > 31 || Integer.parseInt(strDay) == 0) {
             errorInfo = "身份证日期无效";
-            MyLogger.e(AppConfig.DEBUG_TAG,"ID:"+"errorInfo="+errorInfo);
+            MyLogger.e(BuildConfig.DEBUG_TAG,"ID:"+"errorInfo="+errorInfo);
             return false;
         }
         // =====================(end)=====================
@@ -253,7 +253,7 @@ public class FormatUtil {
         Hashtable h = GetAreaCode();
         if (h.get(Ai.substring(0, 2)) == null) {
             errorInfo = "身份证地区编码错误。";
-            MyLogger.e(AppConfig.DEBUG_TAG,"ID:"+"errorInfo="+errorInfo);
+            MyLogger.e(BuildConfig.DEBUG_TAG,"ID:"+"errorInfo="+errorInfo);
             return false;
         }
         // ==============================================
@@ -272,7 +272,7 @@ public class FormatUtil {
         if (IDStr.length() == 18) {
             if (Ai.equals(IDStr) == false) {
                 errorInfo = "身份证无效，不是合法的身份证号码";
-                MyLogger.e(AppConfig.DEBUG_TAG,"ID:"+"errorInfo="+errorInfo);
+                MyLogger.e(BuildConfig.DEBUG_TAG,"ID:"+"errorInfo="+errorInfo);
                 return false;
             }
         } else {

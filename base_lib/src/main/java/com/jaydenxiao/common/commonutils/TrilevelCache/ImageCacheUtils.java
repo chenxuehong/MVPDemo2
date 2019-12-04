@@ -4,7 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.widget.ImageView;
 
-import com.jaydenxiao.common.base.AppConfig;
+import com.jaydenxiao.common.BuildConfig;
 import com.jaydenxiao.common.commonutils.MyLogger;
 
 /**
@@ -57,7 +57,7 @@ public class ImageCacheUtils {
             memoryCacheUtils.setBitmap2Memory(imgUrl, bitmap);
             return;
         }
-        MyLogger.e(AppConfig.DEBUG_TAG,"从网络中加载图片...");
+        MyLogger.e(BuildConfig.DEBUG_TAG,"从网络中加载图片...");
         netCacheUtils.getBitmapFromNet(imageView, imgUrl);
     }
 }

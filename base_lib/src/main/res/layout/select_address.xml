@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="400dp"
+    android:minHeight="400dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#fff"
+        android:paddingBottom="20dp"
+        android:paddingTop="20dp" >
+
+        <TextView
+            android:id="@+id/cancel"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="30dp"
+            android:layout_weight="1"
+            android:gravity="left|center_vertical"
+            android:text="取消"
+            android:textColor="@color/main_color"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/confirm"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_marginRight="30dp"
+            android:layout_weight="1"
+            android:gravity="right|center_vertical"
+            android:text="完成"
+            android:textColor="@color/main_color"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <com.jaydenxiao.common.ui.view.address.CityPicker
+        android:background="#fff"
+        android:id="@+id/city_select_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>

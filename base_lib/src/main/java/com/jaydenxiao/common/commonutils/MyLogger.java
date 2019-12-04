@@ -2,7 +2,7 @@ package com.jaydenxiao.common.commonutils;
 
 import android.util.Log;
 
-import com.jaydenxiao.common.base.AppConfig;
+import com.jaydenxiao.common.BuildConfig;
 
 /**
  * 日志工具类
@@ -12,7 +12,7 @@ import com.jaydenxiao.common.base.AppConfig;
 public final class MyLogger {
 
     //开关
-    private final static boolean flag = AppConfig.DEBUG;//true 测试                 false  上线
+    private final static boolean flag = BuildConfig.DEBUG;//true 测试                 false  上线
 
     public static void v(String tag, String msg) {
         if (flag) {

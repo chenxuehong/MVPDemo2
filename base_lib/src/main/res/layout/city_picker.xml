@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:su="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:orientation="horizontal" >
+
+    <com.dyl.base_lib.external.address.ScrollerNumberPicker
+        android:id="@+id/province"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp"
+        android:layout_weight="1"
+        su:picker_itemNumber="5"
+        su:picker_lineColor="@color/main_color"
+        su:picker_maskHight="32dp"
+        su:picker_noEmpty="true"
+        su:picker_selecredTextSize="22dp"
+        su:picker_normalTextSize="26dp"
+        su:picker_normalTextColor="#777"
+        su:picker_selecredTextColor="#ff000000"
+        su:picker_unitHight="50dp" />
+
+    <com.dyl.base_lib.external.address.ScrollerNumberPicker
+        android:id="@+id/city"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp"
+        android:layout_weight="1"
+        su:picker_itemNumber="5"
+        su:picker_lineColor="@color/main_color"
+        su:picker_maskHight="32dp"
+        su:picker_noEmpty="true"
+        su:picker_normalTextColor="#777"
+        su:picker_selecredTextSize="22dp"
+        su:picker_normalTextSize="26dp"
+        su:picker_selecredTextColor="#ff000000"
+        su:picker_unitHight="50dp" />
+    <com.dyl.base_lib.external.address.ScrollerNumberPicker
+        android:id="@+id/area"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp"
+        android:layout_weight="1"
+        su:picker_selecredTextSize="22dp"
+        su:picker_normalTextSize="26dp"
+        su:picker_itemNumber="5"
+        su:picker_lineColor="@color/main_color"
+        su:picker_maskHight="32dp"
+        su:picker_noEmpty="true"
+        su:picker_normalTextColor="#777"
+        su:picker_selecredTextColor="#ff000000"
+        su:picker_unitHight="50dp" />
+
+</LinearLayout>

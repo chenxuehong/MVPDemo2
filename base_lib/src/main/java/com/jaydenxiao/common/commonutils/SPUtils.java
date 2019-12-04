@@ -3,7 +3,7 @@ package com.jaydenxiao.common.commonutils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.jaydenxiao.common.base.LibApplication;
+import com.jaydenxiao.common.ui.LibApplication;
 import com.jaydenxiao.common.commonutils.security.Base64;
 
 import java.io.ByteArrayInputStream;
@@ -22,7 +22,7 @@ public class SPUtils {
     private static SharedPreferences sp;
 
     private SPUtils() {
-        sp = getSharedPreferences(LibApplication.Companion.getAppContext(), SPUtils.DEFAULT_SP_NAME);
+        sp = getSharedPreferences(LibApplication.Companion.getBaseApplication(), SPUtils.DEFAULT_SP_NAME);
     }
 
     private static SPUtils mSPUtil;

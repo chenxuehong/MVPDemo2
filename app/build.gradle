@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-
+apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     packagingOptions {
@@ -14,6 +14,8 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode rootProject.ext.versionCode
         versionName rootProject.ext.versionName
+        // 分包 ，防止包中方法数达到65535的上限
+        multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         //添加部分
         javaCompileOptions {
@@ -22,22 +24,48 @@ android {
             }
         }
     }
-    buildTypes {
+
+    File propFile = file('../signing.properties')
+    Properties props = new Properties()
+    props.load(new FileInputStream(propFile))
+    signingConfigs {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            storeFile file(props['STORE_FILE'])
+            storePassword props['STORE_PASSWORD']
+            keyAlias props['KEY_ALIAS']
+            keyPassword props['KEY_PASSWORD']
         }
+    }
+
+    buildTypes {
+        sit {
+            signingConfig signingConfigs.release
+            minifyEnabled false
+            debuggable true
+        }
+        pre {
+            signingConfig signingConfigs.release
+            zipAlignEnabled true
+            debuggable true
+        }
+        prd {
+            signingConfig signingConfigs.release
+            zipAlignEnabled true
+            //minifyEnabled true
+            debuggable false
+            //proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
     }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     testImplementation 'junit:junit:4.12'
     api 'com.android.support.constraint:constraint-layout:1.1.3'
     //noinspection GradleCompatible
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-
     api "com.android.support:recyclerview-v7:${rootProject.ext.support_version}"
     api "com.android.support:design:${rootProject.ext.support_version}"
     api "com.android.support:appcompat-v7:${rootProject.ext.support_version}"

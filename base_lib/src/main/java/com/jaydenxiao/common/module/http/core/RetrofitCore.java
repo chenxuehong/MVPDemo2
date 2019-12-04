@@ -1,21 +1,24 @@
 package com.jaydenxiao.common.module.http.core;
 
+import android.content.Context;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.jaydenxiao.common.BuildConfig;
-import com.jaydenxiao.common.base.LibApplication;
-import com.jaydenxiao.common.module.http.constant.URLConstant;
-import com.jaydenxiao.common.module.http.factory.CustomGsonConverterFactory;
+import com.jaydenxiao.common.ui.LibApplication;
+import com.jaydenxiao.common.constant.URLConstant;
+import com.jaydenxiao.common.factory.CustomGsonConverterFactory;
 import com.jaydenxiao.common.module.http.intercepter.FilterFastRequestInterceptor;
 import com.jaydenxiao.common.module.http.intercepter.ForceCacheInterceptor;
 
+import java.io.File;
 import java.util.concurrent.TimeUnit;
 
+import okhttp3.Cache;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by 13198 on 2018/3/28.
@@ -28,16 +31,17 @@ public class RetrofitCore {
     private static RetrofitCore instance;
     private Retrofit mRetrofit;
     private OkHttpClient.Builder builder;
-
+    private static Context mContext;
     private RetrofitCore() {
         init();
     }
 
-    public static RetrofitCore getInstance() {
+    public static RetrofitCore getInstance(Context context) {
 
         if (instance == null) {
             synchronized (RetrofitCore.class) {
                 if (instance == null) {
+                    mContext = context;
                     instance = new RetrofitCore();
                 }
             }
@@ -65,8 +69,9 @@ public class RetrofitCore {
             builder.addInterceptor(httpLoggingInterceptor);
         }
 
+        builder.cache(new Cache(new File(mContext.getExternalCacheDir(),BuildConfig.PROJECT_NAME), 10 * 1024 * 1024));
         // 没有网络时，强制走缓存
-        builder.addInterceptor(new ForceCacheInterceptor(LibApplication.Companion.getAppContext()));
+        builder.addInterceptor(new ForceCacheInterceptor(LibApplication.Companion.getBaseApplication()));
         // 网络层拦截器，10秒内走缓存，10秒后走网络
         builder.addNetworkInterceptor(new FilterFastRequestInterceptor(10));
     }

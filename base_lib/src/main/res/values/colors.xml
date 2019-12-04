@@ -52,4 +52,5 @@
     <color name="alpha_80_black">#CC000000</color>
 
     <color name="register_topcolor">#2e2e32</color>
+    <color name="line">#66c2c2c2</color>
 </resources>
